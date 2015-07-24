@@ -7,13 +7,13 @@ type BinarySearchTree =
     member this.Insert(value:int) = 
         match this with
         | EmptyTree -> BinaryTree(value, EmptyTree, EmptyTree)
-        | BinaryTree (root, left, right) as node -> 
-            if (value < root) then
-                BinaryTree(root, EmptyTree.Insert(value), right)
-            elif (value > root) then
-                BinaryTree(root, left, EmptyTree.Insert(value))
+        | BinaryTree (root_value, left, right) as root -> 
+            if (value < root_value) then
+                BinaryTree(root_value, EmptyTree.Insert(value), right)
+            elif (value > root_value) then
+                BinaryTree(root_value, left, EmptyTree.Insert(value))
             else
-                node
+                root
 
     member this.InOrder =
         match this with
