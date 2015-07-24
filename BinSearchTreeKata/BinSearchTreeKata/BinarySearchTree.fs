@@ -7,27 +7,27 @@ type BinarySearchTree =
     member this.Insert(value:int) = 
         match this with
         | EmptyTree -> BinaryTree(value, EmptyTree, EmptyTree)
-        | BinaryTree (root_value, left, right) as root -> 
-            if (value < root_value) then
-                BinaryTree(root_value, left.Insert(value), right)
-            elif (value > root_value) then
-                BinaryTree(root_value, left, right.Insert(value))
+        | BinaryTree (rootValue, leftTree, rightTree) as root -> 
+            if (value < rootValue) then
+                BinaryTree(rootValue, leftTree.Insert(value), rightTree)
+            elif (value > rootValue) then
+                BinaryTree(rootValue, leftTree, rightTree.Insert(value))
             else
                 root
 
-    member this.FromList(listOfValues:int list) = 
-        match listOfValues with
+    member this.FromList(values:int list) = 
+        match values with
         | head :: tail -> this.Insert(head).FromList(tail)
         | [] -> this
 
     member this.InOrder =
         match this with
         | EmptyTree -> []
-        | BinaryTree (value, left, right) -> 
-            left.InOrder @ [value] @ right.InOrder
+        | BinaryTree (value, leftTree, rightTree) -> 
+            leftTree.InOrder @ [value] @ rightTree.InOrder
 
     member this.PreOrder =
         match this with
         | EmptyTree -> []
-        | BinaryTree (value, left, right) -> 
-            [value] @ left.PreOrder @ right.PreOrder
+        | BinaryTree (value, leftTree, rightTree) -> 
+            [value] @ leftTree.PreOrder @ rightTree.PreOrder
