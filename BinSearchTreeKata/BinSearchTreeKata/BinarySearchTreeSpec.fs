@@ -8,7 +8,7 @@ open Xunit.Abstractions
 
 [<Fact>]
 let ``Create a tree with just a root`` () =
-    let sut = EmptyTree.Insert(4)
+    let sut = EmptyTree.FromList([4])
 
     Assert.Equal<Collections.Generic.IEnumerable<int>>([4], sut.InOrder)
     Assert.Equal<Collections.Generic.IEnumerable<int>>([4], sut.PreOrder)
