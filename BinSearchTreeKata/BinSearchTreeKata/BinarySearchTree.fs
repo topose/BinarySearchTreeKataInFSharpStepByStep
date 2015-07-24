@@ -18,12 +18,5 @@ type BinarySearchTree =
     member this.InOrder =
         match this with
         | EmptyTree -> []
-        | BinaryTree (value, EmptyTree, EmptyTree) -> [value]
-        | BinaryTree (value, BinaryTree(left_value, EmptyTree, EmptyTree), EmptyTree) -> 
-            [left_value] @ [value]
-        | BinaryTree (value, EmptyTree, BinaryTree(right_value, EmptyTree, EmptyTree)) -> 
-            [value] @ [right_value] 
-        | BinaryTree (value, BinaryTree(left_value, EmptyTree, EmptyTree), BinaryTree(right_value, EmptyTree, EmptyTree)) -> 
-            [left_value] @ [value] @ [right_value] 
         | BinaryTree (value, left, right) -> 
             left.InOrder @ [value] @ right.InOrder
