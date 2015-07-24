@@ -4,11 +4,6 @@ type BinarySearchTree =
     | EmptyTree
     | BinaryTree of int * BinarySearchTree * BinarySearchTree
 
-    member this.FromList(listOfValues:int list) = 
-        match listOfValues with
-        | head :: tail -> this.Insert(head)
-        | [] -> this
-
     member this.Insert(value:int) = 
         match this with
         | EmptyTree -> BinaryTree(value, EmptyTree, EmptyTree)
@@ -19,6 +14,11 @@ type BinarySearchTree =
                 BinaryTree(root_value, left, right.Insert(value))
             else
                 root
+
+    member this.FromList(listOfValues:int list) = 
+        match listOfValues with
+        | head :: tail -> this.Insert(head).FromList(tail)
+        | [] -> this
 
     member this.InOrder =
         match this with
