@@ -20,3 +20,9 @@ type BinarySearchTree =
         | EmptyTree -> []
         | BinaryTree (value, left, right) -> 
             left.InOrder @ [value] @ right.InOrder
+
+    member this.PreOrder =
+        match this with
+        | EmptyTree -> []
+        | BinaryTree (value, left, right) -> 
+            [value] @ left.PreOrder @ right.PreOrder
